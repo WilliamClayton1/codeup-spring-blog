@@ -14,13 +14,13 @@ public class PostController {
 
     @RequestMapping(path = "/post/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public String getId(@PathVariable String id) {
+    public String getPostId(@PathVariable String id) {
         return "view an individual post";
     }
 
     @RequestMapping(path = "/post/create", method = RequestMethod.GET)
     @ResponseBody
-    public String getCreate() {
+    public String getCreateForm() {
         return "view the form for creating a post";
     }
 
