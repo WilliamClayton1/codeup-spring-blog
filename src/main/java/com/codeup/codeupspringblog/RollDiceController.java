@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.*;
 
 @Controller
 public class RollDiceController {
@@ -14,17 +14,30 @@ public class RollDiceController {
         return "roll-dice";
     }
 
-    @GetMapping("/roll-dice/{n}")
-    @ResponseBody
-    public String rolledDice(@PathVariable int n) {
+    @GetMapping ("/roll-dice/{n}")
+    public String rolledDice(@PathVariable int n, Model model) {
 
-        int dice2 = (int) (Math.random()*6+1);
+        int dice = 0;
+        ArrayList<Integer> listOfGuesses = new ArrayList<Integer>();
+        long correctGuesses = 0;
+        long incorrectGuesses = 0;
 
-        if(n == dice2){
-           return "The dice rolled " + dice2 + ". YOU GUESSED RIGHT!";
-        } else {
-            return "The dice rolled " +  dice2 + ". You guessed wrong.";
+        for (int i = 0; i < 10; i++) {
+
+            dice = (int) (Math.random()*6+1);
+            listOfGuesses.add(dice);
+
+            if (n == dice) {
+                correctGuesses += 1;
+            } else {
+                incorrectGuesses += 1;
+            }
+
         }
+
+        model.addAttribute("listOfGuesses", listOfGuesses);
+
+        return "Out of 10 guesses, you got " + correctGuesses + " correct and " + incorrectGuesses + " incorrect.";
 
     }
 

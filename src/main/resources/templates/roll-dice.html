@@ -8,39 +8,9 @@
 
 <div>
 	<h1>Guess which side the dice will land on.</h1>
-<!--	<form method="GET" action="/roll-dice">-->
-<!--		<h3>Select a number and roll the dice.</h3>-->
-<!--		-->
-<!--		<label for="one"> 1-->
-<!--			<input id="one" name="choice" type="radio">-->
-<!--		</label>-->
-<!--		-->
-<!--		<label for="two"> 2-->
-<!--			<input id="two" name="choice" type="radio">-->
-<!--		</label>-->
-<!--		-->
-<!--		<label for="three"> 3-->
-<!--			<input id="three" name="choice" type="radio">-->
-<!--		</label>-->
-<!--		-->
-<!--		<label for="four"> 4-->
-<!--			<input id="four" name="choice" type="radio">-->
-<!--		</label>-->
-<!--		-->
-<!--		<label for="five"> 5-->
-<!--			<input id="five" name="choice" type="radio">-->
-<!--		</label>-->
-<!--		-->
-<!--		<label for="six"> 6-->
-<!--			<input id="six" name="choice" type="radio">-->
-<!--		</label>-->
-<!--		-->
-<!--		<br>-->
-<!--		<br>-->
-<!--		-->
-<!--		<button type="submit">Roll the Dice!</button>-->
-<!--		-->
-<!--	</form>-->
+	<div th:each="guess : ${listOfGuesses}">
+		<p th:text="${dice}"></p>
+	</div>
 </div>
 
 </body>

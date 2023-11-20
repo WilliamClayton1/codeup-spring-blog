@@ -33,7 +33,6 @@ public class PostController {
     }
 
     @RequestMapping(path = "/post/{id}", method = RequestMethod.GET)
-    @ResponseBody
     public String getPostId(@PathVariable int id, Model model) {
         Post post = new Post();
 
