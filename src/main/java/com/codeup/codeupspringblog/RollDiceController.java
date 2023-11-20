@@ -14,31 +14,20 @@ public class RollDiceController {
         return "roll-dice";
     }
 
-    @GetMapping ("/roll-dice/{n}")
-    public String rolledDice(@PathVariable int n, Model model) {
+    @GetMapping("/roll-dice/{n}")
+    @ResponseBody
+    public String rolledDice(@PathVariable int n) {
 
-        int dice = 0;
-        ArrayList<Integer> listOfGuesses = new ArrayList<Integer>();
-        long correctGuesses = 0;
-        long incorrectGuesses = 0;
-
-        for (int i = 0; i < 10; i++) {
-
-            dice = (int) (Math.random()*6+1);
-            listOfGuesses.add(dice);
+        int dice = (int) (Math.random()*6+1);
 
             if (n == dice) {
-                correctGuesses += 1;
+                return "The roll was " + dice + " You guessed right";
             } else {
-                incorrectGuesses += 1;
+                return "The roll was " + dice + " You guessed wrong";
             }
 
         }
 
-        model.addAttribute("listOfGuesses", listOfGuesses);
-
-        return "Out of 10 guesses, you got " + correctGuesses + " correct and " + incorrectGuesses + " incorrect.";
-
     }
 
-}
+
