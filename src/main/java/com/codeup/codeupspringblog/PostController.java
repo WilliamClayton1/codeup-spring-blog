@@ -4,16 +4,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @Controller
 public class PostController {
 
     private final PostRepository postDao;
 
-    public PostController(PostRepository postDao) {
+    private final UserRepository userDao;
+
+    public PostController(PostRepository postDao, UserRepository userDao) {
         this.postDao = postDao;
+        this.userDao = userDao;
     }
+
 
     //Show all post in the index page
     @RequestMapping(path = "/post", method = RequestMethod.GET)
@@ -46,6 +48,8 @@ public class PostController {
     public String postCreate(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body) {
 
         Post post = new Post(title, body);
+
+        post.setUser(userDao.getUserById(1L));
 
         postDao.save(post);
 

@@ -3,6 +3,7 @@ package com.codeup.codeupspringblog;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
@@ -20,8 +21,8 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    private ArrayList<Post> posts;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Post> posts;
 
     public User(){
     }
