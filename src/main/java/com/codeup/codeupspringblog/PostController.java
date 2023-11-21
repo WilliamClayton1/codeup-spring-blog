@@ -42,7 +42,8 @@ public class PostController {
 
     //Create a post
     @RequestMapping(path = "/post/create", method = RequestMethod.POST)
-    public String postCreate(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body, Model model ) {
+
+    public String postCreate(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body) {
 
         Post post = new Post(title, body);
 
