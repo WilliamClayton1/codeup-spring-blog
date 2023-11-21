@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Create A Post</title>
+	<title>Edit Post</title>
 </head>
 <body>
 
-<h1>Create you own Blog Post</h1>
+<h1>Edit Your Post</h1>
 
-<form th:action="@{/post/create}" th:method="post" th:object="${post}">
+<form th:action="@{/post/id/edit}" th:method="post" th:object="${post}">
 	
 	Title:
 	<label>
-		<input th:field="*{title}" />
+		<input th:field="${title}" />
 	</label>
 	<br />
 	

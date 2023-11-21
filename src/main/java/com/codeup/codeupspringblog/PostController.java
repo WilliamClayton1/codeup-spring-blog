@@ -37,23 +37,33 @@ public class PostController {
 
     //Show the page to create a post
     @RequestMapping(path = "/post/create", method = RequestMethod.GET)
-    public String getCreatePost() {
+    public String getCreatePost(Model model) {
+        model.addAttribute("post", new Post());
         return "posts/create";
     }
 
 
     //Create a post
     @RequestMapping(path = "/post/create", method = RequestMethod.POST)
-
-    public String postCreate(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body) {
-
-        Post post = new Post(title, body);
+    public String postCreate(@ModelAttribute Post post) {
 
         post.setUser(userDao.getUserById(1L));
 
         postDao.save(post);
 
         return "redirect:/post";
+    }
+
+    //Show the page to edit a post
+    @RequestMapping(path = "/post/{id}/edit", method = RequestMethod.GET)
+    public String getCreatePost(@PathVariable long id, Model model) {
+
+        Post post = postDao.getPostById(id);
+
+        model.addAttribute("post", post);
+
+
+        return "posts/edit";
     }
 
 }
