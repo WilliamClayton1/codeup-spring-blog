@@ -56,7 +56,7 @@ public class PostController {
 
     //Show the page to edit a post
     @RequestMapping(path = "/post/{id}/edit", method = RequestMethod.GET)
-    public String getCreatePost(@PathVariable long id, Model model) {
+    public String getEditPost(@PathVariable long id, Model model) {
 
         Post post = postDao.getPostById(id);
 
@@ -65,5 +65,14 @@ public class PostController {
 
         return "posts/edit";
     }
+
+    @RequestMapping(path = "/post/{id}/edit", method = RequestMethod.POST)
+    public String editPost(@ModelAttribute Post post) {
+
+        postDao.save(post);
+
+        return "redirect:/post";
+    }
+
 
 }

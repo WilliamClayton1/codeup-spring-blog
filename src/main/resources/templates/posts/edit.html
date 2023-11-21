@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
 	<title>Edit Post</title>
@@ -8,21 +8,24 @@
 
 <h1>Edit Your Post</h1>
 
-<form th:action="@{/post/id/edit}" th:method="post" th:object="${post}">
+<form th:method="post" th:action="@{/post/id/edit}" th:object="${post}">
 	
-	Title:
-	<label>
-		<input th:field="${title}" />
+	<label>Title:
+		<input th:field="*{title}"/>
 	</label>
-	<br />
 	
-	Description:
-	<label>
-		<input th:field="*{body}" />
+	<label>Body:
+		<textarea th:field="*{body}"></textarea>
 	</label>
-	<br />
 	
-	<input type="submit" />
+	<input type="submit">
+	
+	<label>
+		<input th:field="*{id}" th:hidden="true"/>
+	</label>
+	<label>
+		<input th:field="*{user}" th:hidden="true"/>
+	</label>
 </form>
 
 </body>
