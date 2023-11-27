@@ -17,7 +17,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-    private UserDetailsLoader usersLoader;
+    private final UserDetailsLoader usersLoader;
 
     public SecurityConfiguration(UserDetailsLoader usersLoader) {
         this.usersLoader = usersLoader;
@@ -41,7 +41,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/post/create", "/post/*/edit").authenticated()
                         /* Pages that do not require authentication
                          * anyone can visit the home page, register, login, and view ads */
-                        .requestMatchers("/", "/post", "/post/*", "/sign-up", "/login").permitAll()
+                        .requestMatchers("/", "/post", "/post/*", "/sign-up", "/login", "partials/navbar", "partials/header").permitAll()
                         // allow loading of static resources
                         .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
                 )

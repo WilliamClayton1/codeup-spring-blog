@@ -3,8 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Title</title>
+	<head th:replace="partials/navbar :: head" />
 </head>
 <body>
+<nav th:replace="partials/navbar :: navbar" />
 
 <div th:each="post : ${postList}">
 	<h1 th:text="${post.getTitle()}"></h1>
