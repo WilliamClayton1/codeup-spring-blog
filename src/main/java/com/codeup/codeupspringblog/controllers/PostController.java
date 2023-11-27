@@ -1,5 +1,9 @@
-package com.codeup.codeupspringblog;
+package com.codeup.codeupspringblog.controllers;
 
+import com.codeup.codeupspringblog.EmailService;
+import com.codeup.codeupspringblog.models.Post;
+import com.codeup.codeupspringblog.repositories.PostRepository;
+import com.codeup.codeupspringblog.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,17 +14,22 @@ public class PostController {
     private final PostRepository postDao;
 
     private final UserRepository userDao;
+    private final EmailService emailService;
 
-    public PostController(PostRepository postDao, UserRepository userDao) {
+    //Dependency Injection
+    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService) {
         this.postDao = postDao;
         this.userDao = userDao;
+        this.emailService = emailService;
     }
 
 
     //Show all post in the index page
     @RequestMapping(path = "/post", method = RequestMethod.GET)
     public String post(Model model) {
+
         model.addAttribute("postList", postDao.findAll());
+
         return "posts/index";
     }
 
@@ -38,7 +47,9 @@ public class PostController {
     //Show the page to create a post
     @RequestMapping(path = "/post/create", method = RequestMethod.GET)
     public String getCreatePost(Model model) {
+
         model.addAttribute("post", new Post());
+
         return "posts/create";
     }
 
@@ -51,6 +62,8 @@ public class PostController {
 
         postDao.save(post);
 
+        emailService.prepareAndSend(post);
+
         return "redirect:/post";
     }
 
@@ -62,10 +75,10 @@ public class PostController {
 
         model.addAttribute("post", post);
 
-
         return "posts/edit";
     }
 
+    //Update a post
     @RequestMapping(path = "/post/{id}/edit", method = RequestMethod.POST)
     public String editPost(@ModelAttribute Post post) {
 

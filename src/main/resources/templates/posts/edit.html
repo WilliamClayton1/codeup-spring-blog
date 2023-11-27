@@ -8,7 +8,7 @@
 
 <h1>Edit Your Post</h1>
 
-<form th:method="post" th:action="@{/post/id/edit}" th:object="${post}">
+<form th:method="post" th:action="@{/post/{id}/edit(id = ${post.id})}" th:object="${post}">
 	
 	<label>Title:
 		<input th:field="*{title}"/>

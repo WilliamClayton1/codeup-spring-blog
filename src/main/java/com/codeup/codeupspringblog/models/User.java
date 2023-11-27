@@ -1,8 +1,8 @@
-package com.codeup.codeupspringblog;
+package com.codeup.codeupspringblog.models;
 
+import com.codeup.codeupspringblog.models.Post;
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
