@@ -9,9 +9,12 @@
 <nav th:replace="partials/navbar :: navbar" /> <!--Trying to add a dynamic navbar-->
 
 <div th:each="post : ${postList}">
-	<h1 th:text="${post.getTitle()}"></h1>
+	<a th:href="@{/post/{id}(id = ${post.id})}">
+		<h1 th:text="${post.getTitle()}"></h1>
+	</a>
+	
 	<p th:text="${post.getBody()}"></p>
-	<a th:href="@{/post/{id}(id = ${post.id})}">View</a>
+	
 </div>
 
 </body>
