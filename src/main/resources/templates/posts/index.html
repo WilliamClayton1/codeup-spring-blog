@@ -6,7 +6,7 @@
 	<head th:replace="partials/navbar :: head" />
 </head>
 <body>
-<nav th:replace="partials/navbar :: navbar" />
+<nav th:replace="partials/navbar :: navbar" /> <!--Trying to add a dynamic navbar-->
 
 <div th:each="post : ${postList}">
 	<h1 th:text="${post.getTitle()}"></h1>
